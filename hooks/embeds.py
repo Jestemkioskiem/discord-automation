@@ -3,6 +3,7 @@ import requests
 import time
 from collections import defaultdict
 
+# Code derived from: https://github.com/kyb3r/Discord-Hooks/blob/51e1dc73d9225f666fe8bb45494e59f8e9f8bb96/discord_hooks.py
 
 class Webhook:
 
