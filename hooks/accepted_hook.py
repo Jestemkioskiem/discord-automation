@@ -5,6 +5,7 @@ import os
 
 import dataset
 import requests
+from team_map import get_team_map
 
 logger = logging.getLogger('utopian-accepted-post-hook')
 logger.setLevel(logging.INFO)
@@ -12,7 +13,6 @@ logging.basicConfig()
 
 db_conn = None
 
-from team_map import MOD_TO_TEAM
 
 
 def get_db_conn(connection_uri):
@@ -54,6 +54,7 @@ def already_posted(connection_uri, author, permlink):
 
 
 def check_posts(connection_uri, webhook_url):
+    mods = get_team_map()
     posts = get_last_approved_posts()
     for post in posts:
 
@@ -76,7 +77,7 @@ def check_posts(connection_uri, webhook_url):
                 continue
 
         message = "**[%s team]** **[%s]** - %s approved contribution: %s" % (
-            MOD_TO_TEAM.get(moderator, 'unknown'),
+            mods.get(moderator),
             post.get("json_metadata", {}).get("type", "unknown"),
             moderator,
             "https://utopian.io" + post["url"]
@@ -110,7 +111,7 @@ def check_posts(connection_uri, webhook_url):
 
         accepted_hook.add_field(
             name="Supervisor",
-            value=MOD_TO_TEAM.get(moderator, 'unknown'),
+            value=mods.get(moderator),
         )
 
         accepted_hook.add_field(
