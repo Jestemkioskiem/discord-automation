@@ -5,7 +5,7 @@ from discord.ext import commands
 
 client = Bot(description="Utopian-Bot", command_prefix='!', pm_help = False)
 
-help_channel_id = "391079614270668803" #click "copy id on the discord channel"
+help_channel_id = "foo" #click "copy id on the discord channel"
 help_msg = "For technical support, issues with posts, suggestions for utopian.io and other inquiries, please contact the Utopian team at https://support.utopian.io/\n\nIf your post does not appear on utopian goto: http://postfix.utopian.io/"
 
 async def command(message,text):
@@ -36,5 +36,4 @@ async def on_message(message):
 	if message.content.startswith(client.command_prefix): # Setting up commands. You can add new commands in the commands() function at the top of the code.
 		await command(message, message.content)
 
-#client.run(os.getenv('UB_TOKEN')) # set an ENV variable UB_TOKEN to the discord token of the bot
-client.run('MzkxMjA3NjQxNTIwNzk5NzQ0.DcyB4g.w2eG7ePLQYJ75vJWdTB_ULb7Axc')
+client.run(os.getenv('UB_TOKEN')) # set an ENV variable UB_TOKEN to the discord token of the bot
