@@ -25,9 +25,8 @@ async def send_help(channel_id):
 			counter+=1
 		if counter > 0:
 			last_message = await client.send_message(help_channel, help_msg)
-			await asyncio.sleep(30)
-		else:
-			await asyncio.sleep(3600)
+		
+		await asyncio.sleep(3600)
 		
 
 @client.event
