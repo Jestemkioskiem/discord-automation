@@ -8,7 +8,7 @@ client = Bot(description="Utopian-Bot", command_prefix='!', pm_help = False)
 help_channel_id = "371714300269690881" #click "copy id on the discord channel"
 help_msg = "For technical support, issues with posts, suggestions for utopian.io and other inquiries, please contact the Utopian team at https://support.utopian.io/\n\nIf your post does not appear on utopian goto: http://postfix.utopian.io/"
 
-async def command(message,text):
+async def command(message,text): # Add your commands here in the same format as help
 	text = str(text)[1:]
 
 	if text.lower().startswith('help'):
@@ -18,14 +18,14 @@ async def command(message,text):
 async def send_help(channel_id):
 	help_channel = client.get_channel(channel_id)
 	last_message = await client.send_message(help_channel, help_msg)
-	while True:
+	while True: # Check if the last message on the channel is by the bot or not. If not, post a new one after an hour.
 		counter = 0
 		async for log in client.logs_from(help_channel, after=last_message):
 			counter+=1
 		if counter > 0:
 			last_message = await client.send_message(help_channel, help_msg)
-		
-		await asyncio.sleep(3600)
+			await asyncio.sleep(3600)
+		await asyncio.sleep(30)
 
 @client.event
 async def on_ready():
