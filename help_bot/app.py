@@ -9,10 +9,10 @@ help_channel_id = "371714300269690881" #click "copy id on the discord channel"
 help_msg = "For technical support, issues with posts, suggestions for utopian.io and other inquiries, please contact the Utopian team at https://support.utopian.io/\n\nIf your post does not appear on utopian goto: http://postfix.utopian.io/"
 
 async def command(message,text):
-		text = str(text)[1:]
+	text = str(text)[1:]
 
-		if text.lower().startswith('help'):
-			await client.send_message(message.channel, help_msg)
+	if text.lower().startswith('help'):
+		await client.send_message(message.channel, help_msg)
 
 
 async def send_help(channel_id):
