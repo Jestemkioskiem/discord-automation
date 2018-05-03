@@ -17,16 +17,18 @@ $ export =[BOT_TOKEN]
 $ python3 utopian_bot/main.py
 ```
 
-#### Installation and Running (Main Bot)
+#### Installation and Running (Help Bot)
 
 Bot currently sends a message to a specified channel every hour, unless the last message in the channel belongs to it. It also sends the same message if !help is used.
+
+Remember to alter the channel id on line 8.
 
 ```
 $ git clone https://github.com/utopian-io/discord-automation
 $ cd discord-automation
 $ pip install -r h_requirements.txt
 $ export UB_TOKEN=[BOT_TOKEN]
-$ python3 main_bot/app.py
+$ python3 help_bot/app.py
 ```
 
 #### Installation (Hooks)
