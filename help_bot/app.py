@@ -5,7 +5,7 @@ from discord.ext import commands
 
 client = Bot(description="Utopian-Bot", command_prefix='!', pm_help = False)
 
-help_channel_id = "foo" #click "copy id on the discord channel"
+help_channel_id = "371714300269690881" #click "copy id on the discord channel"
 help_msg = "For technical support, issues with posts, suggestions for utopian.io and other inquiries, please contact the Utopian team at https://support.utopian.io/\n\nIf your post does not appear on utopian goto: http://postfix.utopian.io/"
 
 async def command(message,text):
