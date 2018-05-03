@@ -2,7 +2,7 @@
 Bots and hooks for managing our Discord server
 
 
-#### Installation and Running (Bot)
+#### Installation and Running (Moderation Bot)
 
 Bot currently polls messages on #i-am-on-it channel. If the related
 contribution is approved or rejected, it removes it.
@@ -10,13 +10,26 @@ contribution is approved or rejected, it removes it.
 It also removes all messages not starting with https://utopian.io.
 
 ```
-$ git clone https://github.com/utopian-io/discord-bots-and-hooks
-$ cd discord-bots-and-hooks
+$ git clone https://github.com/utopian-io/discord-automation
+$ cd discord-automation
 $ pip install -r requirements.txt
-$ export BOT_TOKEN=[BOT_TOKEN]
+$ export =[BOT_TOKEN]
 $ python3 utopian_bot/main.py
 ```
 
+#### Installation and Running (Help Bot)
+
+Bot currently sends a message to a specified channel every hour, unless the last message in the channel belongs to it. It also sends the same message if !help is used.
+
+Remember to alter the channel id on line 8.
+
+```
+$ git clone https://github.com/utopian-io/discord-automation
+$ cd discord-automation
+$ pip install -r h_requirements.txt
+$ export UB_TOKEN=[BOT_TOKEN]
+$ python3 help_bot/app.py
+```
 
 #### Installation (Hooks)
 
