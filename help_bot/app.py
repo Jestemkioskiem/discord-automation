@@ -1,6 +1,5 @@
 import discord
 import asyncio
-import os
 from discord.ext.commands import Bot
 from discord.ext import commands
 
@@ -25,17 +24,13 @@ async def send_help(channel_id):
 			counter+=1
 		if counter > 0:
 			last_message = await client.send_message(help_channel, help_msg)
-		
-		await asyncio.sleep(3600)
-		
+			await asyncio.sleep(3600)
+		else:
+			await asyncio.sleep(30)
 
 @client.event
 async def on_ready():
-	print('Invite link: https://discordapp.com/oauth2/authorize?client_id={}&scope=bot&permissions=8'.format(client.user.id))
-	try:
-		await send_help(help_channel_id)
-	except:
-		print('Join a channel and reboot.')
+	await send_help(help_channel_id)
 
 @client.event
 async def on_message(message):
