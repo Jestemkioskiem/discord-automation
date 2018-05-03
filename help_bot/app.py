@@ -1,5 +1,6 @@
 import discord
 import asyncio
+import os
 from discord.ext.commands import Bot
 from discord.ext import commands
 
@@ -8,7 +9,7 @@ client = Bot(description="Utopian-Bot", command_prefix='!', pm_help = False)
 help_channel_id = "371714300269690881" #click "copy id on the discord channel"
 help_msg = "For technical support, issues with posts, suggestions for utopian.io and other inquiries, please contact the Utopian team at https://support.utopian.io/\n\nIf your post does not appear on utopian goto: http://postfix.utopian.io/"
 
-async def command(message,text): # Add your commands here in the same format as help
+async def command(message,text):
 	text = str(text)[1:]
 
 	if text.lower().startswith('help'):
@@ -18,18 +19,24 @@ async def command(message,text): # Add your commands here in the same format as 
 async def send_help(channel_id):
 	help_channel = client.get_channel(channel_id)
 	last_message = await client.send_message(help_channel, help_msg)
-	while True: # Check if the last message on the channel is by the bot or not. If not, post a new one after an hour.
+	while True:
 		counter = 0
 		async for log in client.logs_from(help_channel, after=last_message):
 			counter+=1
 		if counter > 0:
 			last_message = await client.send_message(help_channel, help_msg)
+			await asyncio.sleep(30)
+		else:
 			await asyncio.sleep(3600)
-		await asyncio.sleep(30)
+		
 
 @client.event
 async def on_ready():
-	await send_help(help_channel_id)
+	print('Invite link: https://discordapp.com/oauth2/authorize?client_id={}&scope=bot&permissions=8'.format(client.user.id))
+	try:
+		await send_help(help_channel_id)
+	except:
+		print('Join a channel and reboot.')
 
 @client.event
 async def on_message(message):
